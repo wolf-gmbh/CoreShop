@@ -64,6 +64,10 @@ abstract class AbstractNotificationRulePass extends RegisterRegistryTypePass
         $map = [];
         foreach ($container->findTaggedServiceIds($this->tag) as $id => $attributes) {
             foreach ($attributes as $tag) {
+                if (!$tag) {
+                    continue;
+                }
+
                 $definition = $container->findDefinition($id);
 
                 if (!isset($attributes[0]['type'])) {
